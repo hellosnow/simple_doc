@@ -2,6 +2,7 @@
   "build_entry_point": "docs",
   "need_generate_pdf": false,
   "need_generate_intellisense": false,
+  "enable_incremental_postprocessing": true,
   "docsets_to_publish": [
     {
       "docset_name": "jehuan_simple_test",
