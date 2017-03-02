@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OrganizationJoin",
+    "description": "",
+    "termsOfService": "https://go.microsoft.com/fwlink/?LinkId=329770",
+    "contact": {
+      "name": "nugetvss",
+      "email": "nugetvss@microsoft.com"
+    },
+    "license": {
+      "name": "MICROSOFT SOFTWARE LICENSE TERMS",
+      "url": "https://go.microsoft.com/fwlink/?LinkId=329770"
+    },
+    "version": "3.2"
+  },
+  "host": "fabrikam-fiber-inc.visualstudio.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "requests"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/_apis/organizationjoin/requests": {
+      "post": {
+        "tags": [
+          "requests"
+        ],
+        "summary": "QueueJoinOrganization",
+        "description": "",
+        "operationId": "queueJoinOrganization",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JoinOrganizationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/OperationReference"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "JoinOrganizationRequest": {
+      "type": "object",
+      "properties": {
+        "organizationId": {
+          "description": "New organization for this collection (application host id)",
+          "type": "string",
+          "format": "uuid"
+        },
+        "properties": {
+          "$ref": "#/definitions/PropertyCollection"
+        }
+      }
+    },
+    "OperationReference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The identifier for this operation.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "The current status of the operation.",
+          "type": "string",
+          "format": "OperationStatus"
+        },
+        "url": {
+          "description": "Url to get the full object.",
+          "type": "string"
+        }
+      }
+    },
+    "PropertyCollection": {
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": "string",
+            "format": "PropertyPair"
+          }
+        }
+      ],
+      "properties": {
+      }
+    }
+  },
+  "parameters": {
+    "api-Version": {
+      "name": "api-version",
+      "in": "query",
+      "description": "Version of the API to use.  This should be set to '3.2-preview' to use this version of the api.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "securityDefinitions": {
+    "accessToken": {
+      "type": "basic",
+      "description": "Personal access token. Use any value for the user name and the token as the password."
+     }
+  },
+  "security": [
+    {
+      "accessToken": []
+    }
+  ],
+  "externalDocs": {
+    "description": "Visual Studio Team Services REST APIs",
+    "url": "https://www.visualstudio.com/docs/integrate/api/overview"
+  }
+}
